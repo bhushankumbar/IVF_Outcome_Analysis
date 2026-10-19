@@ -1,56 +1,39 @@
 # IVF Outcome Analysis
 
-An exploratory analysis project examining IVF treatment data with Python and SQL, with a four-page Power BI dashboard covering patient characteristics, treatment measures, embryo quality, and outcomes.
+An end-to-end exploratory analysis of four IVF datasets, combining Python-based data cleaning and statistical analysis, SQL-based data validation and exploration, and a four-page Power BI dashboard.
 
 ## Dashboard Preview
 
 ![Page 1: IVF dashboard overview](Dashboard/Page%201.jpeg)
 
-The remaining dashboard page screenshots are in [`Dashboard/`](Dashboard/). The Power BI report file is not included in this public repository.
+The other three dashboard page screenshots are kept in [`Dashboard/`](Dashboard/).
 
-## Project Contents
+## Project Overview
 
-- `python/`: four dataset-specific analysis scripts and the shared cleaning and EDA module.
-- `Sql/`: SQL data-quality and exploratory-analysis queries for the four datasets (Dataset 2 has separate mother, offspring, and Elisa tables).
-- `Dashboard/`: four exported dashboard page screenshots.
+The project examines how patient characteristics, treatment and hormone measures, embryo development, and pregnancy outcomes appear across the available datasets. Dataset 2 contains three related tables: mother, offspring, and Elisa measurements.
 
-The analyses cover missing and blank values, duplicate records, categorical-value consistency, numeric ranges, potential outliers, and relationships between variables. The Python workflow also exports cleaned copies, data-quality and review tables, descriptive summaries including the four moments, correlations, group summaries, date trends where available, and numeric distribution plots.
+The goal was to assess data quality, explore patterns and distributions, and present the analysis in a visual dashboard. The work is exploratory and describes patterns in the supplied data; it does not establish clinical causation or provide medical advice.
 
-## Python Setup
+## Analytical Approach
 
-Tested with Python 3.12.3. From a terminal, move into the `python` directory and install the required packages:
+- **Data quality:** assessed missing and blank values, duplicate records, inconsistent categories, mixed numeric/text values, invalid formats, and values outside plausible ranges.
+- **Conservative cleaning:** standardized whitespace and case-only category variants, converted values to numeric only when appropriate, and preserved questionable values for review rather than silently guessing corrections.
+- **Exploratory analysis:** summarized numeric and categorical variables, reviewed distributions and potential outliers, compared groups, examined correlations, and explored time-based trends where suitable fields were available.
+- **Statistical moments:** calculated count, mean, variance, skewness, and excess kurtosis, alongside measures such as median, mode, range, and standard deviation.
+- **SQL checks:** explored completeness, duplicates, category consistency, ranges, logical relationships, descriptive statistics, and potential outliers using mean-plus-or-minus-three-standard-deviation checks.
+- **Power BI:** brought selected findings together across four report pages focused on patient and treatment characteristics, hormones, embryo quality, and outcomes.
 
-```bash
-cd python
-python -m pip install pandas numpy matplotlib openpyxl
-```
+## Tools and Project Structure
 
-Place the input CSV files in `python/datasets/` using these exact names:
+- **Python:** pandas and NumPy for data handling and statistics; Matplotlib for distribution plots.
+- **SQL:** dataset-specific exploratory and data-quality queries.
+- **Power BI:** dashboard development and visual communication of findings.
 
-| Script | Required input file(s) |
-| --- | --- |
-| `dataset1.py` | `Dataset_1.csv` |
-| `dataset2.py` | `Dataset_2_offspring.csv`, `Dataset_2_mother.csv`, `Dataset_2_elisa.csv` |
-| `dataset3.py` | `Dataset_3.csv` |
-| `dataset4.py` | `Dataset_4.csv` |
-
-Run an analysis from the `python` directory, for example:
-
-```bash
-python dataset1.py
-```
-
-Run `dataset2.py`, `dataset3.py`, or `dataset4.py` in the same way. Results are written under `python/eda_results/`. Input datasets are not included in this repository.
-
-## SQL Analysis
-
-The SQL files contain queries, not data-loading scripts. Load the corresponding data into a MySQL-compatible database first, then run the relevant file against tables named `dataset1`, `dataset2_elisa`, `dataset2_mother`, `dataset2_offspring`, `dataset3`, and `dataset4`.
-
-The queries use MySQL-style syntax, including backtick-quoted identifiers, `DESCRIBE`, `REGEXP`, and `STDDEV`.
+The `python/` folder contains one analysis script per dataset and a shared module for common cleaning and EDA logic. The `Sql/` folder contains queries for each dataset or Dataset 2 table. The `Dashboard/` folder contains exported images of all four report pages.
 
 ## Data Privacy
 
-This project concerns sensitive health-related data. Raw datasets and the data-filled Power BI report are intentionally omitted from this public repository. Do not publish identifiable or otherwise sensitive records. The dashboard screenshots are included as visual examples only; they are not interactive reports.
+The underlying health-related records and the data-populated Power BI report are not included in this public repository. The screenshots provide a visual reference; they are not an interactive report. Sensitive or identifiable records should not be published.
 
 ## License
 
